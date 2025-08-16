@@ -4,8 +4,7 @@ def assert_eq(a, b):
     if a == b:
         pass
     else:
-        print(f"left: [{a}] is not eq right: [{b}]!")
-        assert(a == b)
+        assert a == b, f"left: [{a}] is not eq right: [{b}]!"
 
 def test_reset_dut_default():
     dut = DUTSyncFIFO()
@@ -42,9 +41,9 @@ def test_reset_dut_output():
 
     # print(dut.GetInternalSignalList())
 
-    assert(dut.data_o.value == 0)
-    assert(dut.GetInternalSignal("SyncFIFO_top.SyncFIFO.rptr").value == 0)
-    assert(dut.GetInternalSignal("SyncFIFO_top.SyncFIFO.rptr").value == 0)
+    assert dut.data_o.value == 0
+    assert dut.GetInternalSignal("SyncFIFO_top.SyncFIFO.rptr").value == 0
+    assert dut.GetInternalSignal("SyncFIFO_top.SyncFIFO.rptr").value == 0
 
     dut.Finish()
 
