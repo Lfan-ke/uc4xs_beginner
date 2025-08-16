@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+pythonpath = "./"
+
+[project]
+authors = [
+    {name = "Leo Cheng", email = "chengkelfan@qq.com", github = "Lfan-ke", gitee = "heke1228"},
+]
+license = {text = "MIT"}
+readme = "README.md"
