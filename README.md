@@ -12,5 +12,5 @@
 <br />
 
 <div style="font-size: 0.75em; color: #555666;">
-报告和对应的纸面答案位于`README`和根目录`PDF`文件。
+报告和对应的纸面答案位于`README`和根目录`PDF`文件
 </div>
