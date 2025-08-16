@@ -1,10 +1,24 @@
-# uc4xs_beginner
+# 新手任务1-Picker
 
-[万众一芯](https://open-verify.cc/)[新手任务](https://open-verify.cc/beginner/task)仓库
+```bash
+make init
+make test
+make wave
+make clean
+```
 
-> 不同的作业位于不同的分支：
->
-> - task1-picker
-> - task2-toffee
-> - task3-syfifo
-> - task4-ncache
+
+## 1. DUT 类的创建和初始化
+
+> 在默认的写模式下，rst_n 的拉高是在是在什么时候生效的？
+> > 默认波形图：
+> > ![wave1.png](resource/wave1.png)
+> > 时钟在上升沿
+
+> 把rst_n的写模式修改为立即模式Imme，再重新观察rst_n 的拉高是在是在什么时候生效的？跟默认情况下的波形做一个比对。
+> > 立即模式波形图：
+> > ![wave2.png](resource/wave2.png)
+> > 在下降沿就写入了
+
+> 思考：在对模块进行初始化时，仅仅是对rst_n进行赋值就足够了吗？还需要注意什么？
+> > 还需视情况将部分输入也合理初始化，比如测试总线的时候可以先将总线初始化为z等等
