@@ -211,3 +211,4 @@ __marimo__/
 
 !cache-ut/build/
 !cache-ut/testbench/env
+cache-ut/out
