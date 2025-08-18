@@ -3,6 +3,7 @@
 ```bash
 make init
 make test
+make unit
 make wave
 make clean
 ```
@@ -12,12 +13,16 @@ make clean
 
 > 在默认的写模式下，rst_n 的拉高是在是在什么时候生效的？
 > > 默认波形图：
+> > 
 > > ![wave1.png](resource/wave1.png)
+> >
 > > 时钟在上升沿
 
 > 把rst_n的写模式修改为立即模式Imme，再重新观察rst_n 的拉高是在是在什么时候生效的？跟默认情况下的波形做一个比对。
 > > 立即模式波形图：
+> > 
 > > ![wave2.png](resource/wave2.png)
+> >
 > > 在下降沿就写入了
 
 > 思考：在对模块进行初始化时，仅仅是对rst_n进行赋值就足够了吗？还需要注意什么？
