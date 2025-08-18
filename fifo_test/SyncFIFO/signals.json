@@ -1,4 +1,24 @@
 {
+    "SyncFIFO": {
+        "counter": {
+            "High": 4,
+            "Low": 0,
+            "Pin": "reg",
+            "_": true
+        },
+        "rptr": {
+            "High": 3,
+            "Low": 0,
+            "Pin": "reg",
+            "_": true
+        },
+        "wptr": {
+            "High": 3,
+            "Low": 0,
+            "Pin": "reg",
+            "_": true
+        }
+    },
     "clk": {
         "High": -1,
         "Low": 0,

@@ -38,6 +38,9 @@ class DUTSyncFIFO(object):
         self.data_o = xsp.XPin(xsp.XData(32, xsp.XData.Out), self.event)
         self.full_o = xsp.XPin(xsp.XData(0, xsp.XData.Out), self.event)
         self.empty_o = xsp.XPin(xsp.XData(0, xsp.XData.Out), self.event)
+        self.SyncFIFO_wptr = xsp.XPin(xsp.XData(4, xsp.XData.Out), self.event)
+        self.SyncFIFO_counter = xsp.XPin(xsp.XData(5, xsp.XData.Out), self.event)
+        self.SyncFIFO_rptr = xsp.XPin(xsp.XData(4, xsp.XData.Out), self.event)
 
 
         # BindDPI
@@ -49,6 +52,9 @@ class DUTSyncFIFO(object):
         self.data_o.BindDPIPtr(self.dut.GetDPIHandle("data_o", 0), self.dut.GetDPIHandle("data_o", 1))
         self.full_o.BindDPIPtr(self.dut.GetDPIHandle("full_o", 0), self.dut.GetDPIHandle("full_o", 1))
         self.empty_o.BindDPIPtr(self.dut.GetDPIHandle("empty_o", 0), self.dut.GetDPIHandle("empty_o", 1))
+        self.SyncFIFO_wptr.BindDPIPtr(self.dut.GetDPIHandle("SyncFIFO_wptr", 0), self.dut.GetDPIHandle("SyncFIFO_wptr", 1))
+        self.SyncFIFO_counter.BindDPIPtr(self.dut.GetDPIHandle("SyncFIFO_counter", 0), self.dut.GetDPIHandle("SyncFIFO_counter", 1))
+        self.SyncFIFO_rptr.BindDPIPtr(self.dut.GetDPIHandle("SyncFIFO_rptr", 0), self.dut.GetDPIHandle("SyncFIFO_rptr", 1))
 
 
         # Add2Port
@@ -60,9 +66,13 @@ class DUTSyncFIFO(object):
         self.xport.Add("data_o", self.data_o.xdata)
         self.xport.Add("full_o", self.full_o.xdata)
         self.xport.Add("empty_o", self.empty_o.xdata)
+        self.xport.Add("SyncFIFO_wptr", self.SyncFIFO_wptr.xdata)
+        self.xport.Add("SyncFIFO_counter", self.SyncFIFO_counter.xdata)
+        self.xport.Add("SyncFIFO_rptr", self.SyncFIFO_rptr.xdata)
 
 
         # Cascaded ports
+        self.SyncFIFO = self.xport.NewSubPort("SyncFIFO_")
         self.data = self.xport.NewSubPort("data_")
 
 

@@ -24,80 +24,145 @@ variables:
     mem_bytes: 1
     rtl_width: 1
     offset: 13
-  - name: SyncFIFO_top.SyncFIFO.wptr
+  - name: SyncFIFO_top.__Vtogcov__clk
     type: CData
     mem_bytes: 1
-    rtl_width: 4
+    rtl_width: 1
     offset: 14
-  - name: SyncFIFO_top.SyncFIFO.rptr
+  - name: SyncFIFO_top.__Vtogcov__rst_n
     type: CData
     mem_bytes: 1
-    rtl_width: 4
+    rtl_width: 1
     offset: 15
-  - name: SyncFIFO_top.SyncFIFO.counter
+  - name: SyncFIFO_top.__Vtogcov__we_i
     type: CData
     mem_bytes: 1
-    rtl_width: 5
+    rtl_width: 1
     offset: 16
-  - name: SyncFIFO_top.SyncFIFO.rvalid
+  - name: SyncFIFO_top.__Vtogcov__re_i
     type: CData
     mem_bytes: 1
     rtl_width: 1
     offset: 17
-  - name: SyncFIFO_top.SyncFIFO.wvalid
+  - name: SyncFIFO_top.__Vtogcov__full_o
     type: CData
     mem_bytes: 1
     rtl_width: 1
     offset: 18
-  - name: __Vdpi_export_trigger
+  - name: SyncFIFO_top.__Vtogcov__empty_o
     type: CData
     mem_bytes: 1
     rtl_width: 1
     offset: 19
+  - name: SyncFIFO_top.SyncFIFO.wptr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 20
+  - name: SyncFIFO_top.SyncFIFO.rptr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 21
+  - name: SyncFIFO_top.SyncFIFO.counter
+    type: CData
+    mem_bytes: 1
+    rtl_width: 5
+    offset: 22
+  - name: SyncFIFO_top.SyncFIFO.rvalid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 23
+  - name: SyncFIFO_top.SyncFIFO.wvalid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 24
+  - name: SyncFIFO_top.SyncFIFO.__Vtogcov__wptr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 25
+  - name: SyncFIFO_top.SyncFIFO.__Vtogcov__rptr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 26
+  - name: SyncFIFO_top.SyncFIFO.__Vtogcov__counter
+    type: CData
+    mem_bytes: 1
+    rtl_width: 5
+    offset: 27
+  - name: SyncFIFO_top.SyncFIFO.__Vtogcov__rvalid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 28
+  - name: SyncFIFO_top.SyncFIFO.__Vtogcov__wvalid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 29
+  - name: __Vdpi_export_trigger
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 30
   - name: __Vtrigrprev__TOP__SyncFIFO_top.clk
     type: CData
     mem_bytes: 1
     rtl_width: 1
-    offset: 20
+    offset: 31
   - name: __VactContinue
     type: CData
     mem_bytes: 1
     rtl_width: 1
-    offset: 21
+    offset: 32
   - name: SyncFIFO_top.data_i
     type: IData
     mem_bytes: 4
     rtl_width: 32
-    offset: 24
+    offset: 36
   - name: SyncFIFO_top.data_o
     type: IData
     mem_bytes: 4
     rtl_width: 32
-    offset: 28
+    offset: 40
+  - name: SyncFIFO_top.__Vtogcov__data_i
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 44
+  - name: SyncFIFO_top.__Vtogcov__data_o
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 48
   - name: __VstlIterCount
     type: IData
     mem_bytes: 4
     rtl_width: 32
-    offset: 32
+    offset: 52
   - name: __VicoIterCount
     type: IData
     mem_bytes: 4
     rtl_width: 32
-    offset: 36
+    offset: 56
   - name: __VactIterCount
     type: IData
     mem_bytes: 4
     rtl_width: 32
-    offset: 40
+    offset: 60
   - name: SyncFIFO_top.SyncFIFO.ram
     type: IData
     mem_bytes: 4
     rtl_width: 32
     array_size: 16
-    offset: 44
+    offset: 64
   - name: __Vm_traceActivity
     type: CData
     mem_bytes: 1
     rtl_width: 1
     array_size: 2
-    offset: 108
+    offset: 128

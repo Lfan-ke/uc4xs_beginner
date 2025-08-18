@@ -2,6 +2,7 @@
 pythonpath = "./"
 
 [project]
+name = "fifo_test"
 authors = [
     {name = "Leo Cheng", email = "chengkelfan@qq.com", github = "Lfan-ke", gitee = "heke1228"},
 ]
