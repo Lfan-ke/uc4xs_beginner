@@ -1,0 +1,15 @@
+{
+    "value": {
+        "seenScripts": [
+            [
+                "/home/heke/ysyx/uc4xs_newcomer/cache-ut/build.mill",
+                "import $file.NutShell.build\nimport mill._, scalalib._\nimport coursier.maven.MavenRepository\nimport mill.scalalib.TestModule._\n\n// 指定Nutshell的依赖\nobject difftest extends NutShell.build.CommonNS {\n  override def millSourcePath = os.pwd / \"NutShell\" / \"difftest\"\n}\n\n// Nutshell 配置\nobject NtShell extends NutShell.build.CommonNS with NutShell.build.HasChiselTests {\n  override def millSourcePath = os.pwd / \"NutShell\"\n  override def moduleDeps = super.moduleDeps ++ Seq(\n        difftest,\n  )\n}\n\n// UT环境配置\nobject ut extends NutShell.build.CommonNS with ScalaTest{\n    override def millSourcePath = os.pwd\n    override def moduleDeps = super.moduleDeps ++ Seq(\n        NtShell\n    )\n}"
+            ]
+        ],
+        "errors": [],
+        "buildFile": "build.mill",
+        "headerData": ""
+    },
+    "valueHash": 2112948502,
+    "inputsHash": -715016739
+}

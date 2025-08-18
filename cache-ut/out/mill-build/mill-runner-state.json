@@ -1,0 +1,18 @@
+{
+    "workerCache": {
+        "mill.javalib.JvmWorkerModule.worker": {
+            "identityHashCode": 284034271,
+            "inputHash": -1187688133
+        }
+    },
+    "evalWatched": [
+        "/home/heke/ysyx/uc4xs_newcomer/cache-ut/mill-build/compile-resources",
+        "/home/heke/ysyx/uc4xs_newcomer/cache-ut/mill-build/resources",
+        "/home/heke/ysyx/uc4xs_newcomer/cache-ut/mill-build/src",
+        "/home/heke/ysyx/uc4xs_newcomer/cache-ut/build.mill"
+    ],
+    "moduleWatched": [],
+    "classLoaderIdentity": null,
+    "runClasspath": [],
+    "runClasspathHash": 473519988
+}
