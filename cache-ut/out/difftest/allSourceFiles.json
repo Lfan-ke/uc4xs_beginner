@@ -1,0 +1,11 @@
+{
+    "value": [
+        "ref:v0:216dfe39:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/scala/common/Mem.scala",
+        "ref:v0:cd4b04c4:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/scala/Difftest.scala",
+        "ref:v0:d9ea5ddc:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/scala/Batch.scala",
+        "ref:v0:5d32e451:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/scala/DPIC.scala",
+        "ref:v0:cec2e3bf:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/scala/DifftestMain.scala"
+    ],
+    "valueHash": -851638312,
+    "inputsHash": -527385819
+}

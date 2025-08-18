@@ -2,14 +2,31 @@
     "value": {
         "seenScripts": [
             [
-                "/home/heke/ysyx/uc4xs_newcomer/cache-ut/build.mill",
-                "import $file.NutShell.build\nimport mill._, scalalib._\nimport coursier.maven.MavenRepository\nimport mill.scalalib.TestModule._\n\n// 指定Nutshell的依赖\nobject difftest extends NutShell.build.CommonNS {\n  override def millSourcePath = os.pwd / \"NutShell\" / \"difftest\"\n}\n\n// Nutshell 配置\nobject NtShell extends NutShell.build.CommonNS with NutShell.build.HasChiselTests {\n  override def millSourcePath = os.pwd / \"NutShell\"\n  override def moduleDeps = super.moduleDeps ++ Seq(\n        difftest,\n  )\n}\n\n// UT环境配置\nobject ut extends NutShell.build.CommonNS with ScalaTest{\n    override def millSourcePath = os.pwd\n    override def moduleDeps = super.moduleDeps ++ Seq(\n        NtShell\n    )\n}"
+                "/home/heke/ysyx/uc4xs_newcomer/cache-ut/build.sc",
+                "import millbuild.NutShell.build\nimport mill._, scalalib._\nimport coursier.maven.MavenRepository\nimport mill.scalalib.TestModule._\n\n// 指定Nutshell的依赖\nobject difftest extends NutShell.build.CommonNS {\n  override def millSourcePath = os.pwd / \"NutShell\" / \"difftest\"\n}\n\n// Nutshell 配置\nobject NtShell\n    extends NutShell.build.CommonNS\n    with NutShell.build.HasChiselTests {\n  override def millSourcePath = os.pwd / \"NutShell\"\n  override def moduleDeps = super.moduleDeps ++ Seq(\n    difftest\n  )\n}\n\n// UT环境配置\nobject ut extends NutShell.build.CommonNS with ScalaTest {\n  override def millSourcePath = os.pwd\n  override def moduleDeps = super.moduleDeps ++ Seq(\n    NtShell\n  )\n}\n"
+            ],
+            [
+                "/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/build.sc",
+                "import mill._, scalalib._\nimport coursier.maven.MavenRepository\n\nobject ivys {\n  val scala = \"2.13.10\"\n  val chisel3 = ivy\"edu.berkeley.cs::chisel3:3.5.6\"\n  val chisel3Plugin = ivy\"edu.berkeley.cs:::chisel3-plugin:3.5.6\"\n}\n\ntrait CommonModule extends ScalaModule {\n  override def scalaVersion = ivys.scala\n\n  override def scalacOptions = Seq(\"-Ymacro-annotations\") ++\n    Seq(\"-Xfatal-warnings\", \"-feature\", \"-deprecation\", \"-language:reflectiveCalls\")\n}\n\ntrait HasChisel3 extends ScalaModule {\n  override def repositoriesTask = T.task {\n    super.repositoriesTask() ++ Seq(\n      MavenRepository(\"https://oss.sonatype.org/content/repositories/snapshots\")\n    )\n  }\n  override def ivyDeps = Agg(ivys.chisel3)\n  override def scalacPluginIvyDeps = Agg(ivys.chisel3Plugin)\n}\n\ntrait HasChiselTests extends SbtModule {\n  object test extends SbtModuleTests with TestModule.ScalaTest {\n    override def ivyDeps = Agg(ivy\"edu.berkeley.cs::chiseltest:0.5.4\")\n  }\n}\n\ntrait CommonNS extends SbtModule with CommonModule with HasChisel3\n\nobject difftest extends CommonNS {\n  override def millSourcePath = os.pwd / \"difftest\"\n}\n\nobject chiselModule extends CommonNS with HasChiselTests {\n  override def millSourcePath = os.pwd\n\n  override def moduleDeps = super.moduleDeps ++ Seq(\n    difftest\n  )\n}\n"
+            ]
+        ],
+        "repos": [],
+        "ivyDeps": [],
+        "importGraphEdges": [
+            [
+                "/home/heke/ysyx/uc4xs_newcomer/cache-ut/build.sc",
+                [
+                    "/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/build.sc"
+                ]
+            ],
+            [
+                "/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/build.sc",
+                []
             ]
         ],
         "errors": [],
-        "buildFile": "build.mill",
-        "headerData": ""
+        "millImport": false
     },
-    "valueHash": 2112948502,
-    "inputsHash": -715016739
+    "valueHash": 972383522,
+    "inputsHash": 1199113172
 }

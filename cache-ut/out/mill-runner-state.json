@@ -1,6 +1,24 @@
 {
-    "workerCache": {},
-    "evalWatched": [],
+    "workerCache": {
+        "mill.scalalib.ZincWorkerModule.worker": {
+            "identityHashCode": 1006036501,
+            "inputHash": 1959147706
+        }
+    },
+    "evalWatched": [
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/compile-resources",
+        "ref:v0:faa278cf:/home/heke/ysyx/uc4xs_newcomer/cache-ut/src/main/scala",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/src/main/java",
+        "ref:v0:ae00376f:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/src/main/scala",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/src/main/java",
+        "ref:v0:8a9c9ba9:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/scala",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/java",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/src/main/resources",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/compile-resources",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/compile-resources",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/NutShell/difftest/src/main/resources",
+        "ref:v0:c984eca8:/home/heke/ysyx/uc4xs_newcomer/cache-ut/src/main/resources"
+    ],
     "moduleWatched": [],
     "scriptImportGraph": [],
     "classLoaderIdentity": [],

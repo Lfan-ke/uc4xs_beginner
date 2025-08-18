@@ -1,0 +1,2925 @@
+variables:
+  - name: Cache_top.clock
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 8
+  - name: Cache_top.reset
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 9
+  - name: Cache_top.io_in_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 10
+  - name: Cache_top.io_in_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 11
+  - name: Cache_top.io_in_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 12
+  - name: Cache_top.io_in_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 13
+  - name: Cache_top.io_in_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 14
+  - name: Cache_top.io_in_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 15
+  - name: Cache_top.io_in_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 16
+  - name: Cache_top.io_in_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 17
+  - name: Cache_top.io_flush
+    type: CData
+    mem_bytes: 1
+    rtl_width: 2
+    offset: 18
+  - name: Cache_top.io_out_mem_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 19
+  - name: Cache_top.io_out_mem_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 20
+  - name: Cache_top.io_out_mem_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 21
+  - name: Cache_top.io_out_mem_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 22
+  - name: Cache_top.io_out_mem_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 23
+  - name: Cache_top.io_out_mem_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 24
+  - name: Cache_top.io_out_mem_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 25
+  - name: Cache_top.io_out_mem_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 26
+  - name: Cache_top.io_out_coh_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 27
+  - name: Cache_top.io_out_coh_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 28
+  - name: Cache_top.io_out_coh_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 29
+  - name: Cache_top.io_out_coh_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 30
+  - name: Cache_top.io_out_coh_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 31
+  - name: Cache_top.io_out_coh_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 32
+  - name: Cache_top.io_out_coh_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 33
+  - name: Cache_top.io_out_coh_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 34
+  - name: Cache_top.io_mmio_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 35
+  - name: Cache_top.io_mmio_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 36
+  - name: Cache_top.io_mmio_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 37
+  - name: Cache_top.io_mmio_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 38
+  - name: Cache_top.io_mmio_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 39
+  - name: Cache_top.io_mmio_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 40
+  - name: Cache_top.io_mmio_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 41
+  - name: Cache_top.io_mmio_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 42
+  - name: Cache_top.io_empty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 43
+  - name: Cache_top.__Vtogcov__clock
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 44
+  - name: Cache_top.__Vtogcov__reset
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 45
+  - name: Cache_top.__Vtogcov__io_in_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 46
+  - name: Cache_top.__Vtogcov__io_in_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 47
+  - name: Cache_top.__Vtogcov__io_in_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 48
+  - name: Cache_top.__Vtogcov__io_in_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 49
+  - name: Cache_top.__Vtogcov__io_in_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 50
+  - name: Cache_top.__Vtogcov__io_in_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 51
+  - name: Cache_top.__Vtogcov__io_in_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 52
+  - name: Cache_top.__Vtogcov__io_in_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 53
+  - name: Cache_top.__Vtogcov__io_flush
+    type: CData
+    mem_bytes: 1
+    rtl_width: 2
+    offset: 54
+  - name: Cache_top.__Vtogcov__io_out_mem_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 55
+  - name: Cache_top.__Vtogcov__io_out_mem_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 56
+  - name: Cache_top.__Vtogcov__io_out_mem_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 57
+  - name: Cache_top.__Vtogcov__io_out_mem_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 58
+  - name: Cache_top.__Vtogcov__io_out_mem_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 59
+  - name: Cache_top.__Vtogcov__io_out_mem_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 60
+  - name: Cache_top.__Vtogcov__io_out_mem_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 61
+  - name: Cache_top.__Vtogcov__io_out_mem_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 62
+  - name: Cache_top.__Vtogcov__io_out_coh_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 63
+  - name: Cache_top.__Vtogcov__io_out_coh_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 64
+  - name: Cache_top.__Vtogcov__io_out_coh_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 65
+  - name: Cache_top.__Vtogcov__io_out_coh_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 66
+  - name: Cache_top.__Vtogcov__io_out_coh_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 67
+  - name: Cache_top.__Vtogcov__io_out_coh_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 68
+  - name: Cache_top.__Vtogcov__io_out_coh_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 69
+  - name: Cache_top.__Vtogcov__io_out_coh_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 70
+  - name: Cache_top.__Vtogcov__io_mmio_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 71
+  - name: Cache_top.__Vtogcov__io_mmio_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 72
+  - name: Cache_top.__Vtogcov__io_mmio_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 73
+  - name: Cache_top.__Vtogcov__io_mmio_req_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 74
+  - name: Cache_top.__Vtogcov__io_mmio_req_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 75
+  - name: Cache_top.__Vtogcov__io_mmio_resp_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 76
+  - name: Cache_top.__Vtogcov__io_mmio_resp_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 77
+  - name: Cache_top.__Vtogcov__io_mmio_resp_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 78
+  - name: Cache_top.__Vtogcov__io_empty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 79
+  - name: Cache_top.Cache.s1_io_in_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 80
+  - name: Cache_top.Cache.s1_io_in_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 81
+  - name: Cache_top.Cache.s1_io_in_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 82
+  - name: Cache_top.Cache.s1_io_in_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 83
+  - name: Cache_top.Cache.s1_io_out_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 84
+  - name: Cache_top.Cache.s1_io_out_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 85
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 86
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 87
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 88
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 89
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 90
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 91
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 92
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 93
+  - name: Cache_top.Cache.s2_io_out_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 94
+  - name: Cache_top.Cache.s2_io_out_bits_metas_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 95
+  - name: Cache_top.Cache.s2_io_out_bits_metas_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 96
+  - name: Cache_top.Cache.s2_io_out_bits_metas_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 97
+  - name: Cache_top.Cache.s2_io_out_bits_metas_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 98
+  - name: Cache_top.Cache.s2_io_out_bits_hit
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 99
+  - name: Cache_top.Cache.s2_io_out_bits_mmio
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 100
+  - name: Cache_top.Cache.s2_io_out_bits_isForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 101
+  - name: Cache_top.Cache.s2_io_out_bits_forwardData_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 102
+  - name: Cache_top.Cache.s3_io_out_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 103
+  - name: Cache_top.Cache.s3_io_isFinish
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 104
+  - name: Cache_top.Cache.s3_io_dataReadRespToL1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 105
+  - name: Cache_top.Cache.valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 106
+  - name: Cache_top.Cache._T_2
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 107
+  - name: Cache_top.Cache._GEN_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 108
+  - name: Cache_top.Cache.s2_io_in_bits_r_req_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 109
+  - name: Cache_top.Cache.s2_io_in_bits_r_req_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 110
+  - name: Cache_top.Cache.s2_io_in_bits_r_req_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 111
+  - name: Cache_top.Cache.valid_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 112
+  - name: Cache_top.Cache._GEN_10
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 113
+  - name: Cache_top.Cache.s3_io_in_bits_r_req_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 114
+  - name: Cache_top.Cache.s3_io_in_bits_r_req_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 115
+  - name: Cache_top.Cache.s3_io_in_bits_r_req_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 116
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 117
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 118
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 119
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 120
+  - name: Cache_top.Cache.s3_io_in_bits_r_hit
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 121
+  - name: Cache_top.Cache.s3_io_in_bits_r_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 122
+  - name: Cache_top.Cache.s3_io_in_bits_r_mmio
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 123
+  - name: Cache_top.Cache.s3_io_in_bits_r_isForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 124
+  - name: Cache_top.Cache.s3_io_in_bits_r_forwardData_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 125
+  - name: Cache_top.Cache.__Vtogcov__io_out_mem_req_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 126
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 127
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_bits_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 128
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_bits_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 129
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_bits_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 130
+  - name: Cache_top.Cache.__Vtogcov__s1_io_out_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 131
+  - name: Cache_top.Cache.__Vtogcov__s1_io_out_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 132
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 133
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 134
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 135
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 136
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 137
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 138
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 139
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 140
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 141
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 142
+  - name: Cache_top.Cache.__Vtogcov__s1_io_dataReadBus_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 143
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 144
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_bits_req_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 145
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_bits_req_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 146
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_bits_req_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 147
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 148
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 149
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 150
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 151
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 152
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_hit
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 153
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 154
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_mmio
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 155
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_isForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 156
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_forwardData_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 157
+  - name: Cache_top.Cache.__Vtogcov__s2_io_metaWriteBus_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 158
+  - name: Cache_top.Cache.__Vtogcov__s2_io_metaWriteBus_req_bits_setIdx
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 159
+  - name: Cache_top.Cache.__Vtogcov__s2_io_metaWriteBus_req_bits_data_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 160
+  - name: Cache_top.Cache.__Vtogcov__s2_io_metaWriteBus_req_bits_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 161
+  - name: Cache_top.Cache.__Vtogcov__s2_io_dataWriteBus_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 162
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 163
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 164
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 165
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 166
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 167
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_hit
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 168
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_mmio
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 169
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_isForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 170
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_forwardData_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 171
+  - name: Cache_top.Cache.__Vtogcov__s3_io_out_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 172
+  - name: Cache_top.Cache.__Vtogcov__s3_io_isFinish
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 173
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 174
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 175
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadRespToL1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 176
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_r_req_size
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 177
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_r_req_cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 178
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_r_req_wmask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 8
+    offset: 179
+  - name: Cache_top.Cache.s2.isForwardMeta
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 180
+  - name: Cache_top.Cache.s2.isForwardMetaReg
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 181
+  - name: Cache_top.Cache.s2._GEN_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 182
+  - name: Cache_top.Cache.s2._T
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 183
+  - name: Cache_top.Cache.s2.forwardMetaReg_data_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 184
+  - name: Cache_top.Cache.s2.forwardMetaReg_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 185
+  - name: Cache_top.Cache.s2._GEN_6
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 186
+  - name: Cache_top.Cache.s2.pickForwardMeta
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 187
+  - name: Cache_top.Cache.s2.metaWay_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 188
+  - name: Cache_top.Cache.s2.metaWay_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 189
+  - name: Cache_top.Cache.s2.metaWay_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 190
+  - name: Cache_top.Cache.s2.metaWay_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 191
+  - name: Cache_top.Cache.s2.hitVec
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 192
+  - name: Cache_top.Cache.s2.victimWaymask_xor
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 193
+  - name: Cache_top.Cache.s2.invalidVec
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 194
+  - name: Cache_top.Cache.s2.refillInvalidWaymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 195
+  - name: Cache_top.Cache.s2.waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 196
+  - name: Cache_top.Cache.s2.isForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 197
+  - name: Cache_top.Cache.s2.isForwardDataReg
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 198
+  - name: Cache_top.Cache.s2._GEN_8
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 199
+  - name: Cache_top.Cache.s2.forwardDataReg_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 200
+  - name: Cache_top.Cache.s2._io_in_ready_T_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 201
+  - name: Cache_top.Cache.s2.__Vtogcov__isForwardMeta
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 202
+  - name: Cache_top.Cache.s2.__Vtogcov__isForwardMetaReg
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 203
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardMetaReg_data_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 204
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardMetaReg_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 205
+  - name: Cache_top.Cache.s2.__Vtogcov__pickForwardMeta
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 206
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardWaymask_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 207
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardWaymask_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 208
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardWaymask_2
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 209
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardWaymask_3
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 210
+  - name: Cache_top.Cache.s2.__Vtogcov__metaWay_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 211
+  - name: Cache_top.Cache.s2.__Vtogcov__metaWay_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 212
+  - name: Cache_top.Cache.s2.__Vtogcov__metaWay_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 213
+  - name: Cache_top.Cache.s2.__Vtogcov__metaWay_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 214
+  - name: Cache_top.Cache.s2.__Vtogcov__hitVec
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 215
+  - name: Cache_top.Cache.s2.__Vtogcov__victimWaymask_xor
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 216
+  - name: Cache_top.Cache.s2.__Vtogcov__victimWaymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 217
+  - name: Cache_top.Cache.s2.__Vtogcov__invalidVec
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 218
+  - name: Cache_top.Cache.s2.__Vtogcov__hasInvalidWay
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 219
+  - name: Cache_top.Cache.s2.__Vtogcov__refillInvalidWaymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 220
+  - name: Cache_top.Cache.s2.__Vtogcov__isForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 221
+  - name: Cache_top.Cache.s2.__Vtogcov__isForwardDataReg
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 222
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardDataReg_waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 223
+  - name: Cache_top.Cache.s3.metaWriteArb_io_in_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 224
+  - name: Cache_top.Cache.s3.metaWriteArb_io_in_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 225
+  - name: Cache_top.Cache.s3.metaWriteArb_io_out_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 226
+  - name: Cache_top.Cache.s3.metaWriteArb_io_out_bits_data_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 227
+  - name: Cache_top.Cache.s3.dataWriteArb_io_in_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 228
+  - name: Cache_top.Cache.s3.dataWriteArb_io_in_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 229
+  - name: Cache_top.Cache.s3.dataWriteArb_io_out_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 230
+  - name: Cache_top.Cache.s3.mmio
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 231
+  - name: Cache_top.Cache.s3.hit
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 232
+  - name: Cache_top.Cache.s3.miss
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 233
+  - name: Cache_top.Cache.s3.probe
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 234
+  - name: Cache_top.Cache.s3.hitReadBurst
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 235
+  - name: Cache_top.Cache.s3.meta_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 236
+  - name: Cache_top.Cache.s3.useForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 237
+  - name: Cache_top.Cache.s3.writeL2BeatCnt_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 238
+  - name: Cache_top.Cache.s3._T_5
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 239
+  - name: Cache_top.Cache.s3._T_8
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 240
+  - name: Cache_top.Cache.s3._GEN_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 241
+  - name: Cache_top.Cache.s3.state
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 242
+  - name: Cache_top.Cache.s3.needFlush
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 243
+  - name: Cache_top.Cache.s3._GEN_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 244
+  - name: Cache_top.Cache.s3.readBeatCnt_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 245
+  - name: Cache_top.Cache.s3.writeBeatCnt_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 246
+  - name: Cache_top.Cache.s3.state2
+    type: CData
+    mem_bytes: 1
+    rtl_width: 2
+    offset: 247
+  - name: Cache_top.Cache.s3._T_26
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 248
+  - name: Cache_top.Cache.s3._T_27
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 249
+  - name: Cache_top.Cache.s3._T_29
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 250
+  - name: Cache_top.Cache.s3._GEN_8
+    type: CData
+    mem_bytes: 1
+    rtl_width: 2
+    offset: 251
+  - name: Cache_top.Cache.s3.cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 252
+  - name: Cache_top.Cache.s3.afterFirstRead
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 253
+  - name: Cache_top.Cache.s3.alreadyOutFire
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 254
+  - name: Cache_top.Cache.s3._GEN_12
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 255
+  - name: Cache_top.Cache.s3.readingFirst
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 256
+  - name: Cache_top.Cache.s3._io_cohResp_valid_T_4
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 257
+  - name: Cache_top.Cache.s3._releaseLast_T_2
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 258
+  - name: Cache_top.Cache.s3.releaseLast_c_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 259
+  - name: Cache_top.Cache.s3._releaseLast_wrap_value_T_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 260
+  - name: Cache_top.Cache.s3.releaseLast
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 261
+  - name: Cache_top.Cache.s3.respToL1Fire
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 262
+  - name: Cache_top.Cache.s3._respToL1Last_T_6
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 263
+  - name: Cache_top.Cache.s3.respToL1Last_c_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 264
+  - name: Cache_top.Cache.s3._respToL1Last_wrap_value_T_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 265
+  - name: Cache_top.Cache.s3.respToL1Last
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 266
+  - name: Cache_top.Cache.s3._GEN_20
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 267
+  - name: Cache_top.Cache.s3._GEN_26
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 268
+  - name: Cache_top.Cache.s3._GEN_55
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 269
+  - name: Cache_top.Cache.s3._GEN_56
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 270
+  - name: Cache_top.Cache.s3._GEN_57
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 271
+  - name: Cache_top.Cache.s3._GEN_58
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 272
+  - name: Cache_top.Cache.s3._GEN_59
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 273
+  - name: Cache_top.Cache.s3._io_out_bits_cmd_T_7
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 274
+  - name: Cache_top.Cache.s3.__Vtogcov__metaWriteArb_io_in_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 275
+  - name: Cache_top.Cache.s3.__Vtogcov__metaWriteArb_io_in_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 276
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWriteArb_io_in_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 277
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWriteArb_io_in_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 278
+  - name: Cache_top.Cache.s3.__Vtogcov__mmio
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 279
+  - name: Cache_top.Cache.s3.__Vtogcov__hit
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 280
+  - name: Cache_top.Cache.s3.__Vtogcov__miss
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 281
+  - name: Cache_top.Cache.s3.__Vtogcov__probe
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 282
+  - name: Cache_top.Cache.s3.__Vtogcov__hitReadBurst
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 283
+  - name: Cache_top.Cache.s3.__Vtogcov__meta_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 284
+  - name: Cache_top.Cache.s3.__Vtogcov__useForwardData
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 285
+  - name: Cache_top.Cache.s3.__Vtogcov__writeL2BeatCnt_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 286
+  - name: Cache_top.Cache.s3.__Vtogcov__state
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 287
+  - name: Cache_top.Cache.s3.__Vtogcov__needFlush
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 288
+  - name: Cache_top.Cache.s3.__Vtogcov__readBeatCnt_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 289
+  - name: Cache_top.Cache.s3.__Vtogcov__writeBeatCnt_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 290
+  - name: Cache_top.Cache.s3.__Vtogcov__state2
+    type: CData
+    mem_bytes: 1
+    rtl_width: 2
+    offset: 291
+  - name: Cache_top.Cache.s3.__Vtogcov__cmd
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 292
+  - name: Cache_top.Cache.s3.__Vtogcov__afterFirstRead
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 293
+  - name: Cache_top.Cache.s3.__Vtogcov__alreadyOutFire
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 294
+  - name: Cache_top.Cache.s3.__Vtogcov__readingFirst
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 295
+  - name: Cache_top.Cache.s3.__Vtogcov__releaseLast_c_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 296
+  - name: Cache_top.Cache.s3.__Vtogcov__releaseLast_wrap_wrap
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 297
+  - name: Cache_top.Cache.s3.__Vtogcov__releaseLast
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 298
+  - name: Cache_top.Cache.s3.__Vtogcov__respToL1Fire
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 299
+  - name: Cache_top.Cache.s3.__Vtogcov__respToL1Last_c_value
+    type: CData
+    mem_bytes: 1
+    rtl_width: 3
+    offset: 300
+  - name: Cache_top.Cache.s3.__Vtogcov__respToL1Last_wrap_wrap
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 301
+  - name: Cache_top.Cache.s3.__Vtogcov__respToL1Last
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 302
+  - name: Cache_top.Cache.s3.metaWriteArb.__Vtogcov__grant_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 303
+  - name: Cache_top.Cache.s3.dataWriteArb.__Vtogcov__grant_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 304
+  - name: Cache_top.Cache.metaArray.ram_io_r_req_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 305
+  - name: Cache_top.Cache.metaArray.ram_io_r_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 306
+  - name: Cache_top.Cache.metaArray.REG
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 307
+  - name: Cache_top.Cache.metaArray.r_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 308
+  - name: Cache_top.Cache.metaArray.r_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 309
+  - name: Cache_top.Cache.metaArray.r_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 310
+  - name: Cache_top.Cache.metaArray.r_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 311
+  - name: Cache_top.Cache.metaArray.r_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 312
+  - name: Cache_top.Cache.metaArray.r_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 313
+  - name: Cache_top.Cache.metaArray.r_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 314
+  - name: Cache_top.Cache.metaArray.r_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 315
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 316
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 317
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 318
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 319
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 320
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 321
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 322
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 323
+  - name: Cache_top.Cache.metaArray.__Vtogcov__REG
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 324
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_0_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 325
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_0_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 326
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 327
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_1_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 328
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_2_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 329
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_2_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 330
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_3_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 331
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_3_dirty
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 332
+  - name: Cache_top.Cache.metaArray.ram.array_0_MPORT_addr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 333
+  - name: Cache_top.Cache.metaArray.ram.array_0_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 334
+  - name: Cache_top.Cache.metaArray.ram.array_0_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 335
+  - name: Cache_top.Cache.metaArray.ram.array_0_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 336
+  - name: Cache_top.Cache.metaArray.ram.array_0_rdata_MPORT_addr_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 337
+  - name: Cache_top.Cache.metaArray.ram.array_1_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 338
+  - name: Cache_top.Cache.metaArray.ram.array_1_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 339
+  - name: Cache_top.Cache.metaArray.ram.array_1_rdata_MPORT_addr_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 340
+  - name: Cache_top.Cache.metaArray.ram.array_2_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 341
+  - name: Cache_top.Cache.metaArray.ram.array_2_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 342
+  - name: Cache_top.Cache.metaArray.ram.array_2_rdata_MPORT_addr_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 343
+  - name: Cache_top.Cache.metaArray.ram.array_3_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 344
+  - name: Cache_top.Cache.metaArray.ram.array_3_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 345
+  - name: Cache_top.Cache.metaArray.ram.array_3_rdata_MPORT_addr_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 346
+  - name: Cache_top.Cache.metaArray.ram.resetState
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 347
+  - name: Cache_top.Cache.metaArray.ram.resetSet
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 348
+  - name: Cache_top.Cache.metaArray.ram._wrap_value_T_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 349
+  - name: Cache_top.Cache.metaArray.ram.resetFinish
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 350
+  - name: Cache_top.Cache.metaArray.ram._GEN_2
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 351
+  - name: Cache_top.Cache.metaArray.ram.waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 352
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_0_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 353
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_0_rdata_MPORT_addr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 354
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_0_MPORT_addr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 355
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_0_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 356
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_0_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 357
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_1_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 358
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_1_rdata_MPORT_addr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 359
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_1_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 360
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_2_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 361
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_2_rdata_MPORT_addr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 362
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_2_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 363
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_3_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 364
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_3_rdata_MPORT_addr
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 365
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_3_MPORT_mask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 366
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__resetState
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 367
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__resetSet
+    type: CData
+    mem_bytes: 1
+    rtl_width: 7
+    offset: 368
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__wrap_wrap
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 369
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__resetFinish
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 370
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__waymask
+    type: CData
+    mem_bytes: 1
+    rtl_width: 4
+    offset: 371
+  - name: Cache_top.Cache.dataArray.ram_io_r_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 372
+  - name: Cache_top.Cache.dataArray.readArb_io_in_1_ready
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 373
+  - name: Cache_top.Cache.dataArray.readArb_io_in_1_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 374
+  - name: Cache_top.Cache.dataArray.REG
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 375
+  - name: Cache_top.Cache.dataArray.REG_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 376
+  - name: Cache_top.Cache.dataArray.__Vtogcov__ram_io_r_req_valid
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 377
+  - name: Cache_top.Cache.dataArray.__Vtogcov__REG
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 378
+  - name: Cache_top.Cache.dataArray.__Vtogcov__REG_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 379
+  - name: Cache_top.Cache.dataArray.ram.array_0_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 380
+  - name: Cache_top.Cache.dataArray.ram.array_1_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 381
+  - name: Cache_top.Cache.dataArray.ram.array_2_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 382
+  - name: Cache_top.Cache.dataArray.ram.array_3_rdata_MPORT_en_pipe_0
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 383
+  - name: Cache_top.Cache.dataArray.ram.__Vtogcov__array_0_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 384
+  - name: Cache_top.Cache.dataArray.ram.__Vtogcov__array_1_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 385
+  - name: Cache_top.Cache.dataArray.ram.__Vtogcov__array_2_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 386
+  - name: Cache_top.Cache.dataArray.ram.__Vtogcov__array_3_rdata_MPORT_en
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 387
+  - name: Cache_top.Cache.dataArray.readArb.__Vtogcov__grant_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 388
+  - name: Cache_top.Cache.arb.__Vtogcov__grant_1
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 389
+  - name: __Vdpi_export_trigger
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 390
+  - name: __Vtrigrprev__TOP__Cache_top.clock
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 391
+  - name: __VactContinue
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    offset: 392
+  - name: Cache_top.io_in_req_bits_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 394
+  - name: Cache_top.io_in_resp_bits_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 396
+  - name: Cache_top.__Vtogcov__io_in_req_bits_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 398
+  - name: Cache_top.__Vtogcov__io_in_resp_bits_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 400
+  - name: Cache_top.Cache.s1_io_in_bits_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 402
+  - name: Cache_top.Cache.s2_io_in_bits_r_req_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 404
+  - name: Cache_top.Cache.s3_io_in_bits_r_req_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 406
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_bits_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 408
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_bits_req_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 410
+  - name: Cache_top.Cache.__Vtogcov__s2_io_dataWriteBus_req_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 412
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_req_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 414
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_r_req_user
+    type: SData
+    mem_bytes: 2
+    rtl_width: 16
+    offset: 416
+  - name: Cache_top.Cache.s3.dataWriteArb_io_in_0_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 418
+  - name: Cache_top.Cache.s3.dataWriteArb_io_in_1_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 420
+  - name: Cache_top.Cache.s3.dataWriteArb_io_out_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 422
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWriteArb_io_in_0_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 424
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWriteArb_io_in_1_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 426
+  - name: Cache_top.Cache.dataArray.ram_io_r_req_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 428
+  - name: Cache_top.Cache.dataArray.readArb_io_in_1_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 430
+  - name: Cache_top.Cache.dataArray.__Vtogcov__ram_io_r_req_bits_setIdx
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 432
+  - name: Cache_top.Cache.dataArray.ram.array_3_rdata_MPORT_addr_pipe_0
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 434
+  - name: Cache_top.Cache.dataArray.ram.__Vtogcov__array_0_rdata_MPORT_addr
+    type: SData
+    mem_bytes: 2
+    rtl_width: 10
+    offset: 436
+  - name: Cache_top.io_in_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 440
+  - name: Cache_top.io_out_mem_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 444
+  - name: Cache_top.io_out_coh_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 448
+  - name: Cache_top.io_mmio_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 452
+  - name: Cache_top.__Vtogcov__io_in_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 456
+  - name: Cache_top.__Vtogcov__io_out_mem_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 460
+  - name: Cache_top.__Vtogcov__io_out_coh_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 464
+  - name: Cache_top.__Vtogcov__io_mmio_req_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 468
+  - name: Cache_top.Cache.s1_io_in_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 472
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 476
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 480
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 484
+  - name: Cache_top.Cache.s1_io_metaReadBus_resp_data_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 488
+  - name: Cache_top.Cache.s2_io_in_bits_r_req_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 492
+  - name: Cache_top.Cache.s3_io_in_bits_r_req_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 496
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 500
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 504
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 508
+  - name: Cache_top.Cache.s3_io_in_bits_r_metas_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 512
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_bits_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 516
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 520
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 524
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 528
+  - name: Cache_top.Cache.__Vtogcov__s1_io_metaReadBus_resp_data_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 532
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_bits_req_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 536
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 540
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 544
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 548
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_metas_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 552
+  - name: Cache_top.Cache.__Vtogcov__s2_io_metaWriteBus_req_bits_data_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 556
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 560
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 564
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 568
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_metas_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 572
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_r_req_addr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 576
+  - name: Cache_top.Cache.s2.forwardMetaReg_data_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 580
+  - name: Cache_top.Cache.s2.metaWay_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 584
+  - name: Cache_top.Cache.s2.metaWay_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 588
+  - name: Cache_top.Cache.s2.metaWay_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 592
+  - name: Cache_top.Cache.s2.metaWay_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 596
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardMetaReg_data_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 600
+  - name: Cache_top.Cache.s3.metaWriteArb_io_in_0_bits_data_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 608
+  - name: Cache_top.Cache.s3.metaWriteArb_io_out_bits_data_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 612
+  - name: Cache_top.Cache.s3.waddr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 616
+  - name: Cache_top.Cache.s3.__Vtogcov__metaWriteArb_io_in_0_bits_data_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 620
+  - name: Cache_top.Cache.s3.__Vtogcov__waddr
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 624
+  - name: Cache_top.Cache.metaArray.r_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 628
+  - name: Cache_top.Cache.metaArray.r_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 632
+  - name: Cache_top.Cache.metaArray.r_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 636
+  - name: Cache_top.Cache.metaArray.r_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 640
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 644
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 648
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 652
+  - name: Cache_top.Cache.metaArray.__Vtogcov__ram_io_r_resp_data_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 656
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_0_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 660
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_1_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 664
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_2_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 668
+  - name: Cache_top.Cache.metaArray.__Vtogcov__r_3_tag
+    type: IData
+    mem_bytes: 4
+    rtl_width: 19
+    offset: 672
+  - name: Cache_top.Cache.metaArray.ram.array_0_rdata_MPORT_data
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    offset: 676
+  - name: Cache_top.Cache.metaArray.ram.array_0_MPORT_data
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    offset: 680
+  - name: Cache_top.Cache.metaArray.ram.array_1_rdata_MPORT_data
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    offset: 684
+  - name: Cache_top.Cache.metaArray.ram.array_2_rdata_MPORT_data
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    offset: 688
+  - name: Cache_top.Cache.metaArray.ram.array_3_rdata_MPORT_data
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    offset: 692
+  - name: Cache_top.Cache.metaArray.ram.__Vtogcov__array_0_MPORT_data
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    offset: 696
+  - name: __VstlIterCount
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 700
+  - name: __VicoIterCount
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 704
+  - name: __VactIterCount
+    type: IData
+    mem_bytes: 4
+    rtl_width: 32
+    offset: 708
+  - name: Cache_top.io_in_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 712
+  - name: Cache_top.io_in_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 720
+  - name: Cache_top.io_out_mem_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 728
+  - name: Cache_top.io_out_mem_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 736
+  - name: Cache_top.io_out_coh_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 744
+  - name: Cache_top.io_out_coh_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 752
+  - name: Cache_top.io_mmio_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 760
+  - name: Cache_top.io_mmio_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 768
+  - name: Cache_top.__Vtogcov__io_in_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 776
+  - name: Cache_top.__Vtogcov__io_in_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 784
+  - name: Cache_top.__Vtogcov__io_out_mem_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 792
+  - name: Cache_top.__Vtogcov__io_out_mem_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 800
+  - name: Cache_top.__Vtogcov__io_out_coh_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 808
+  - name: Cache_top.__Vtogcov__io_mmio_req_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 816
+  - name: Cache_top.__Vtogcov__io_mmio_resp_bits_rdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 824
+  - name: Cache_top.Cache.s1_io_in_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 832
+  - name: Cache_top.Cache.s1_io_dataReadBus_resp_data_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 840
+  - name: Cache_top.Cache.s1_io_dataReadBus_resp_data_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 848
+  - name: Cache_top.Cache.s1_io_dataReadBus_resp_data_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 856
+  - name: Cache_top.Cache.s1_io_dataReadBus_resp_data_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 864
+  - name: Cache_top.Cache.s2_io_out_bits_forwardData_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 872
+  - name: Cache_top.Cache.s3_io_dataReadBus_resp_data_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 880
+  - name: Cache_top.Cache.s3_io_dataReadBus_resp_data_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 888
+  - name: Cache_top.Cache.s3_io_dataReadBus_resp_data_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 896
+  - name: Cache_top.Cache.s3_io_dataReadBus_resp_data_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 904
+  - name: Cache_top.Cache.s2_io_in_bits_r_req_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 912
+  - name: Cache_top.Cache.s3_io_in_bits_r_req_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 920
+  - name: Cache_top.Cache.s3_io_in_bits_r_datas_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 928
+  - name: Cache_top.Cache.s3_io_in_bits_r_datas_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 936
+  - name: Cache_top.Cache.s3_io_in_bits_r_datas_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 944
+  - name: Cache_top.Cache.s3_io_in_bits_r_datas_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 952
+  - name: Cache_top.Cache.s3_io_in_bits_r_forwardData_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 960
+  - name: Cache_top.Cache.__Vtogcov__s1_io_in_bits_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 968
+  - name: Cache_top.Cache.__Vtogcov__s1_io_dataReadBus_resp_data_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 976
+  - name: Cache_top.Cache.__Vtogcov__s1_io_dataReadBus_resp_data_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 984
+  - name: Cache_top.Cache.__Vtogcov__s1_io_dataReadBus_resp_data_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 992
+  - name: Cache_top.Cache.__Vtogcov__s1_io_dataReadBus_resp_data_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1000
+  - name: Cache_top.Cache.__Vtogcov__s2_io_in_bits_req_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1008
+  - name: Cache_top.Cache.__Vtogcov__s2_io_out_bits_forwardData_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1016
+  - name: Cache_top.Cache.__Vtogcov__s2_io_dataWriteBus_req_bits_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1024
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_datas_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1032
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_datas_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1040
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_datas_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1048
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_datas_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1056
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_forwardData_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1064
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_resp_data_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1072
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_resp_data_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1080
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_resp_data_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1088
+  - name: Cache_top.Cache.__Vtogcov__s3_io_dataReadBus_resp_data_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1096
+  - name: Cache_top.Cache.__Vtogcov__s3_io_in_bits_r_req_wdata
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1104
+  - name: Cache_top.Cache.s2.victimWaymask_lfsr
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1112
+  - name: Cache_top.Cache.s2._victimWaymask_lfsr_T_2
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1120
+  - name: Cache_top.Cache.s2.forwardDataReg_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1128
+  - name: Cache_top.Cache.s2.__Vtogcov__victimWaymask_lfsr
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1136
+  - name: Cache_top.Cache.s2.__Vtogcov__forwardDataReg_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1144
+  - name: Cache_top.Cache.s3.dataWriteArb_io_in_0_bits_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1152
+  - name: Cache_top.Cache.s3.dataWriteArb_io_in_1_bits_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1160
+  - name: Cache_top.Cache.s3.dataWriteArb_io_out_bits_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1168
+  - name: Cache_top.Cache.s3.dataRead
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1176
+  - name: Cache_top.Cache.s3._wordMask_T_27
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1184
+  - name: Cache_top.Cache.s3.wordMask
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1192
+  - name: Cache_top.Cache.s3._dataHitWriteBus_x1_T_1
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1200
+  - name: Cache_top.Cache.s3.dataWay_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1208
+  - name: Cache_top.Cache.s3.dataWay_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1216
+  - name: Cache_top.Cache.s3.dataWay_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1224
+  - name: Cache_top.Cache.s3.dataWay_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1232
+  - name: Cache_top.Cache.s3.inRdataRegDemand
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1240
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWriteArb_io_in_0_bits_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1248
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWriteArb_io_in_1_bits_data_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1256
+  - name: Cache_top.Cache.s3.__Vtogcov__dataRead
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1264
+  - name: Cache_top.Cache.s3.__Vtogcov__wordMask
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1272
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWay_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1280
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWay_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1288
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWay_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1296
+  - name: Cache_top.Cache.s3.__Vtogcov__dataWay_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1304
+  - name: Cache_top.Cache.s3.__Vtogcov__inRdataRegDemand
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1312
+  - name: Cache_top.Cache.dataArray.r___05F0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1320
+  - name: Cache_top.Cache.dataArray.r___05F1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1328
+  - name: Cache_top.Cache.dataArray.r___05F2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1336
+  - name: Cache_top.Cache.dataArray.r___05F3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1344
+  - name: Cache_top.Cache.dataArray.r_1_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1352
+  - name: Cache_top.Cache.dataArray.r_1_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1360
+  - name: Cache_top.Cache.dataArray.r_1_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1368
+  - name: Cache_top.Cache.dataArray.r_1_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1376
+  - name: Cache_top.Cache.dataArray.__Vtogcov__ram_io_r_resp_data_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1384
+  - name: Cache_top.Cache.dataArray.__Vtogcov__ram_io_r_resp_data_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1392
+  - name: Cache_top.Cache.dataArray.__Vtogcov__ram_io_r_resp_data_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1400
+  - name: Cache_top.Cache.dataArray.__Vtogcov__ram_io_r_resp_data_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1408
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r___05F0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1416
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r___05F1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1424
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r___05F2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1432
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r___05F3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1440
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r_1_0_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1448
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r_1_1_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1456
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r_1_2_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1464
+  - name: Cache_top.Cache.dataArray.__Vtogcov__r_1_3_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1472
+  - name: Cache_top.Cache.dataArray.ram.array_0_rdata_MPORT_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1480
+  - name: Cache_top.Cache.dataArray.ram.array_1_rdata_MPORT_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1488
+  - name: Cache_top.Cache.dataArray.ram.array_2_rdata_MPORT_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1496
+  - name: Cache_top.Cache.dataArray.ram.array_3_rdata_MPORT_data
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    offset: 1504
+  - name: Cache_top.Cache.metaArray.ram.array_0
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    array_size: 128
+    offset: 1512
+  - name: Cache_top.Cache.metaArray.ram.array_1
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    array_size: 128
+    offset: 2024
+  - name: Cache_top.Cache.metaArray.ram.array_2
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    array_size: 128
+    offset: 2536
+  - name: Cache_top.Cache.metaArray.ram.array_3
+    type: IData
+    mem_bytes: 4
+    rtl_width: 21
+    array_size: 128
+    offset: 3048
+  - name: Cache_top.Cache.dataArray.ram.array_0
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    array_size: 1024
+    offset: 3560
+  - name: Cache_top.Cache.dataArray.ram.array_1
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    array_size: 1024
+    offset: 11752
+  - name: Cache_top.Cache.dataArray.ram.array_2
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    array_size: 1024
+    offset: 19944
+  - name: Cache_top.Cache.dataArray.ram.array_3
+    type: QData
+    mem_bytes: 8
+    rtl_width: 64
+    array_size: 1024
+    offset: 28136
+  - name: __Vm_traceActivity
+    type: CData
+    mem_bytes: 1
+    rtl_width: 1
+    array_size: 5
+    offset: 36328

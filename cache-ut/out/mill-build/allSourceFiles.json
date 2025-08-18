@@ -1,9 +1,8 @@
 {
     "value": [
-        "ref:v0:d24d3837:/home/heke/ysyx/uc4xs_newcomer/cache-ut/out/mill-build/generatedScriptSources.dest/support/build_/BuildFileImpl.scala",
-        "ref:v0:4b5a1f73:/home/heke/ysyx/uc4xs_newcomer/cache-ut/out/mill-build/generatedScriptSources.dest/support/build_/MillMiscInfo.scala",
-        "ref:v0:a0b3c128:/home/heke/ysyx/uc4xs_newcomer/cache-ut/out/mill-build/generatedScriptSources.dest/wrapped/build_/build.mill"
+        "ref:v0:1950cf3b:/home/heke/ysyx/uc4xs_newcomer/cache-ut/out/mill-build/generateScriptSources.dest/millbuild/NutShell/build.sc",
+        "ref:v0:8c40637e:/home/heke/ysyx/uc4xs_newcomer/cache-ut/out/mill-build/generateScriptSources.dest/millbuild/build.sc"
     ],
-    "valueHash": 905033225,
-    "inputsHash": -618374988
+    "valueHash": -1302891045,
+    "inputsHash": 965975264
 }
