@@ -1,0 +1,1 @@
+genhtml --branch-coverage reports/line_dat/merged.info -o reports/line_dat

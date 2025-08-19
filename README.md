@@ -31,7 +31,9 @@ cache-ut/
 │   ├── coverage
 │   ├── env
 │   └── ...
-├── tests                           + 所有测试用例，项目剩余的代码位于此
+├── fixture                         + 各个 @toffee_test.fixture 函数
+│   └── *.py
+├── tests                           + 所有测试用例，项目剩余的代码位于此，主要位于 test_cache 文件
 │   └── test_*.py
 ├── wavout                          - 测试记录的波形
 │   └── Cache.fst

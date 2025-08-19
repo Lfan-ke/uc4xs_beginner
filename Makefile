@@ -1,4 +1,4 @@
-PYTEST_OPTS := -sv --toffee-report --report-name cache_ut_report.html -n auto
+PYTEST_OPTS := -s -v --toffee-report --report-name cache_ut_report.html # -n auto
 MILL_CMD := mill --no-server -d
 VERILATOR_OPTS := --trace
 PICKER_CMD := picker export
@@ -17,9 +17,9 @@ TARGET_DIRS := $(addprefix $(BASE_DIR)/, $(BUILD_DIR) $(WAVOUT_DIR) $(REPORT_DIR
 
 all: test
 
-test: init
+test:
 	@echo "[INFO] Running tests with pytest..."
-	@cd cache-ut && pytest $(PYTEST_OPTS) || (echo "[ERROR] Tests failed"; exit 1)
+	cd cache-ut && pytest $(PYTEST_OPTS) || (echo "[ERROR] Tests failed"; exit 1)
 
 $(BASE_DIR)/$(BUILD_DIR)/Cache.v: $(BASE_DIR)/$(BUILD_DIR)
 	@echo "[INFO] Generating Cache RTL..."
@@ -31,6 +31,7 @@ build: $(BASE_DIR)/$(BUILD_DIR)/Cache.v
 init: $(BASE_DIR)/$(BUILD_DIR)/Cache.v $(BASE_DIR)/$(WAVOUT_DIR) $(BASE_DIR)/$(REPORT_DIR)
 	@echo "[INFO] Initializing simulation environment..."
 	cd cache-ut && \
+		VERILATOR_COVERAGE_OUTPUT=./reports/ \
 		$(PICKER_CMD) build/Cache.v \
 		--sname Cache \
 		-c \
@@ -46,6 +47,7 @@ clean:
 	@rm -rf $(addprefix $(BASE_DIR)/, $(OUT_DIR)/* $(BUILD_DIR)/* $(REPORT_DIR)/* $(CACHE_MODULE) $(WAVOUT_DIR)/*)
 	@find . -name "__pycache__" -exec rm -rf {} +
 	@find . -name "*_cache" -exec rm -rf {} +
+	@find . -name "V*_coverage.*" -exec rm -rf {} +
 
 wave:
 	@echo "[INFO] Opening waveform viewer..."
