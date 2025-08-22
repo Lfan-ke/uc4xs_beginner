@@ -12,7 +12,7 @@ async def dut(toffee_request: toffee_test.ToffeeRequest) -> DUTCache:
 from testbench.bundle import CacheBundle
 
 @toffee_test.fixture
-async def bundle(toffee_request: toffee_test.ToffeeRequest, dut: DUTCache) -> CacheBundle:
+async def bundle(dut: DUTCache) -> CacheBundle:
     bundle = CacheBundle()
     bundle.bind(dut)
     return bundle
@@ -29,14 +29,14 @@ async def agent(toffee_request: toffee_test.ToffeeRequest, bundle: CacheBundle) 
 from testbench.ref import CacheRef
 
 @toffee_test.fixture
-async def ref(toffee_request: toffee_test.ToffeeRequest) -> CacheRef:
+async def ref() -> CacheRef:
     ref = CacheRef()
     return ref
 
 from testbench.env import CacheEnv
 
 @toffee_test.fixture
-async def env(toffee_request: toffee_test.ToffeeRequest, agent: CacheAgent, ref: CacheRef) -> CacheEnv:
+async def env(agent: CacheAgent, ref: CacheRef) -> CacheEnv:
     env = CacheEnv(agent)
     env.attach(ref)
     return env
