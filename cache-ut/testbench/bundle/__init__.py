@@ -3,6 +3,26 @@ from toffee import Bundle, Signals
 class HandShakeBundle(Bundle):
     ready, valid = Signals(2)
 
+    async def is_valid(self):
+        return self.valid.value == 1
+
+    async def is_ready(self):
+        return self.ready.value == 1
+
+    async def wait_valid(self):
+        clock_step = 0
+        while not await self.is_valid():
+            await self.step(1)
+            clock_step += 1
+        return clock_step
+
+    async def wait_ready(self):
+        clock_step = 0
+        while not await self.is_ready():
+            await self.step(1)
+            clock_step += 1
+        return clock_step
+
 class BaseBundle(Bundle):
     clock, reset = Signals(2)
 
@@ -11,11 +31,41 @@ class BaseBundle(Bundle):
 
     io = IO.from_prefix("io_")
 
+    async def reset(self):
+        self.reset.value = 1
+        await self.step(2)
+        self.reset.value = 0
+        await self.step(2)
+
+    async def is_empty(self):
+        return self.io.empty.value == 1
+
+    async def is_flush(self):
+        return self.io.flush.value == 1
+
 class RequestBundle(HandShakeBundle):
     class BitsRequest(Bundle):
         addr, size, cmd, wmask, wdata, user = Signals(6)
 
     bits = BitsRequest.from_prefix("bits_")
+
+    async def request_block(self, addr, size, cmd, wmask, wdata, user):
+        await self.wait_ready()
+        self.bits.addr.value = addr
+        self.bits.size.value = size
+        self.bits.cmd.value = cmd
+        self.bits.wmask.value = wmask
+        self.bits.wdata.value = wdata
+        self.bits.user.value = user
+        self.valid.value = 1
+        await self.step(1)
+        await self.wait_ready()
+        self.valid.value = 0
+        await self.step(1)
+
+    # async def try_request(self, addr, size, cmd, wmask, wdata, user):
+    #     """ 返回所等待的时钟的非阻塞方法，如果不可请求则返回 False """
+    #     await self.request_block(addr, size, cmd, wmask, wdata, user)
 
 class ResponseBundle(HandShakeBundle):
     class BitsResponse(Bundle):
