@@ -40,3 +40,15 @@ async def env(agent: CacheAgent, ref: CacheRef) -> CacheEnv:
     env = CacheEnv(agent)
     env.attach(ref)
     return env
+
+from testbench.device import MMIODevice, MemDevice
+
+@toffee_test.fixture
+async def mmio() -> MMIODevice:
+    mmio = MMIODevice()
+    return mmio
+
+@toffee_test.fixture
+async def mem() -> MemDevice:
+    mem = MemDevice()
+    return mem

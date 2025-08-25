@@ -1,5 +1,20 @@
 from toffee import Bundle, Signals
 
+
+class CacheRtn:
+    def __init__(self, valid: bool, rdata: int, cmd: int, user: int):
+        self.cmd = cmd
+        self.rdata = rdata  # [63:0]
+        self.valid = valid
+        self.user = user
+
+    def apply(self, bundle):
+        bundle.bits.cmd = self.cmd
+        bundle.bits.rdata = self.rdata
+        bundle.valid = self.valid
+        bundle.bits.user = self.user
+        return bundle
+
 class HandShakeBundle(Bundle):
     ready, valid = Signals(2)
 
@@ -9,19 +24,27 @@ class HandShakeBundle(Bundle):
     async def is_ready(self):
         return self.ready.value == 1
 
-    async def wait_valid(self):
+    async def wait_valid(self) -> int:
         clock_step = 0
         while not await self.is_valid():
             await self.step(1)
             clock_step += 1
         return clock_step
 
-    async def wait_ready(self):
+    async def wait_ready(self) -> int:
         clock_step = 0
         while not await self.is_ready():
             await self.step(1)
             clock_step += 1
         return clock_step
+
+    async def wait_handshake(self) -> int:
+        clock_step = 0
+        while True:
+            if self.ready.value == 1 and self.valid.value == 1:
+                return clock_step
+            clock_step += 1
+            await self.step(1)
 
 class BaseBundle(Bundle):
     clock, reset = Signals(2)
@@ -31,7 +54,7 @@ class BaseBundle(Bundle):
 
     io = IO.from_prefix("io_")
 
-    async def reset(self):
+    async def rst(self):
         self.reset.value = 1
         await self.step(2)
         self.reset.value = 0
@@ -42,6 +65,48 @@ class BaseBundle(Bundle):
 
     async def is_flush(self):
         return self.io.flush.value == 1
+
+class SRAMReqRtn:
+    def __init__(self, addr: int, size: int, cmd: int, wmask: int, wdata: int):
+        self.addr = addr
+        self.size = size
+        self.cmd = cmd
+        self.wmask = wmask
+        self.wdata = wdata
+
+class SRAMReqBundle(HandShakeBundle):
+    class BitsSRAMReq(Bundle):
+        addr, size, cmd, wmask, wdata = Signals(5)
+
+    bits = BitsSRAMReq.from_prefix("bits_")
+
+    async def recv_req(self) -> SRAMReqRtn:
+        await self.wait_valid()
+        addr = self.bits.addr.value
+        size = self.bits.size.value
+        cmd = SimpleBusCmd(self.bits.cmd.value)
+        wmask = self.bits.wmask.value
+        wdata = self.bits.wdata.value
+        self.ready.value = 1
+        await self.step()
+        self.ready.value = 0
+        await self.step()
+        return SRAMReqRtn(addr, size, cmd, wmask, wdata)
+
+class SRAMRespBundle(HandShakeBundle):
+    class BitsSRAMResp(Bundle):
+        cmd, rdata = Signals(2)
+
+    bits = BitsSRAMResp.from_prefix("bits_")
+
+    async def send_resp(self, cmd, rdata):
+        await self.wait_ready()
+        self.valid.value = 1
+        self.bits.cmd.value = cmd
+        self.bits.rdata.value = rdata
+        await self.step()
+        self.valid.value = 0
+        await self.step()
 
 class RequestBundle(HandShakeBundle):
     class BitsRequest(Bundle):
@@ -59,7 +124,6 @@ class RequestBundle(HandShakeBundle):
         self.bits.user.value = user
         self.valid.value = 1
         await self.step(1)
-        await self.wait_ready()
         self.valid.value = 0
         await self.step(1)
 
@@ -73,17 +137,22 @@ class ResponseBundle(HandShakeBundle):
 
     bits = BitsResponse.from_prefix("bits_")
 
-class MemReqBundle(HandShakeBundle):
-    class BitsMemReq(Bundle):
-        addr, size, cmd, wmask, wdata = Signals(5)
+    async def response_block(self) -> CacheRtn:
+        await self.wait_valid()
+        cmd = self.bits.cmd.value
+        rdata = self.bits.rdata.value
+        user = self.bits.user.value
+        self.ready.value = 1
+        await self.step(1)
+        self.ready.value = 0
+        await self.step(1)
+        return CacheRtn(True, rdata, cmd, user)
 
-    bits = BitsMemReq.from_prefix("bits_")
+class MemReqBundle(SRAMReqBundle):
+    pass
 
-class MemRespBundle(HandShakeBundle):
-    class BitsMemResp(Bundle):
-        cmd, rdata = Signals(2)
-
-    bits = BitsMemResp.from_prefix("bits_")
+class MemRespBundle(SRAMRespBundle):
+    pass
 
 class CohReqBundle(HandShakeBundle):
     class BitsCohReq(Bundle):
@@ -97,17 +166,11 @@ class CohRespBundle(HandShakeBundle):
 
     bits = BitsCohResp.from_prefix("bits_")
 
-class MMIOReqBundle(HandShakeBundle):
-    class BitsMMIOReq(Bundle):
-        addr, size, cmd, wmask, wdata = Signals(5)
+class MMIOReqBundle(SRAMReqBundle):
+    pass
 
-    bits = BitsMMIOReq.from_prefix("bits_")
-
-class MMIORespBundle(HandShakeBundle):
-    class BitsMMIOResp(Bundle):
-        cmd, rdata = Signals(2)
-
-    bits = BitsMMIOResp.from_prefix("bits_")
+class MMIORespBundle(SRAMRespBundle):
+    pass
 
 class CacheBundle(Bundle):
     base = BaseBundle()
@@ -119,3 +182,37 @@ class CacheBundle(Bundle):
     coh_resp = CohRespBundle.from_prefix("io_out_coh_resp_")
     mmio_req = MMIOReqBundle.from_prefix("io_mmio_req_")
     mmio_resp = MMIORespBundle.from_prefix("io_mmio_resp_")
+
+    async def request(self, addr, size, cmd, wmask, wdata, user):
+        await self.request_block(addr, size, cmd, wmask, wdata, user)
+        return await self.response_block()
+
+    async def reset(self):
+        await self.base.rst()
+
+    async def is_empty(self):
+        return await self.base.is_empty()
+
+    async def is_flush(self):
+        return await self.base.is_flush()
+
+    async def request_block(self, addr, size, cmd, wmask, wdata, user):
+        await self.req.request_block(addr, size, cmd, wmask, wdata, user)
+
+    async def response_block(self) -> CacheRtn:
+        return await self.resp.response_block()
+
+    async def send_mem_resp(self, cmd, rdata):
+        await self.mem_resp.send_resp(cmd, rdata)
+
+    async def recv_mem_req(self) -> SRAMReqRtn:
+        return await self.mem_req.recv_req()
+
+    async def send_mmio_resp(self, cmd, rdata):
+        await self.mmio_resp.send_resp(cmd, rdata)
+
+    async def recv_mmio_req(self) -> SRAMReqRtn:
+        return await self.mmio_req.recv_req()
+
+    def hook(self, dut):
+        self.dut = dut

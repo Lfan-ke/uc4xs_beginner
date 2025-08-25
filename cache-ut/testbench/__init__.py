@@ -4,7 +4,7 @@ from .agent import CacheAgent
 from .ref import CacheRef
 from .env import CacheEnv
 from .coverage import all_coverage_func
-
+from .device import *
 
 __all__ = [
     "DUTCache",
@@ -13,4 +13,8 @@ __all__ = [
     "CacheRef",
     "CacheEnv",
     "all_coverage_func",
+    "MMIODevice",
+    "MemDevice",
+    "SimpleBusCmd",
+    "DeviceRtn",
 ]

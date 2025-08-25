@@ -41,7 +41,7 @@ class DeviceRtn:
         return bundle
 
 class MMIODevice:
-    def __init__(self, base: int, size: int):
+    def __init__(self, base: int = 0x3000_0000, size: int = 0x1000):
         """ size: byte """
         self.base_address = base
         self.size = size
@@ -94,20 +94,16 @@ class MMIODevice:
                 return DeviceRtn(True, 0, SimpleBusCmd.WRITE_RESP)
             case SimpleBusCmd.PROBE:
                 return DeviceRtn(True, 0, SimpleBusCmd.PROBE_HIT)
-            case SimpleBusCmd.BURST:
+            case SimpleBusCmd.READ_BURST | SimpleBusCmd.WRITE_BURST:
                 assert False, "mmio shout not support burst"
             case _:
                 return DeviceRtn(False, 0, SimpleBusCmd.PROBE_MISS)
 
 class MemDevice:
-    def __init__(self, size=32):
-        """ 默认 32k 就是 0x0000 - 0x8000 """
+    def __init__(self, size=33):
+        """ 默认 32k 就是 0x0000 - 0x8000，这里比 Cache 大一点：0x8400 """
         self.size = size * 1024
         self.buffer = bytearray(self.size)
-
-        self.current_req = None
-        self.burst_count = 0
-        self.burst_index = 0
 
         self.base_address = 0x0000
         self.end_address  = self.base_address + self.size -1
@@ -153,7 +149,7 @@ class MemDevice:
                 byte = (wdata >> (8 * i)) & 0xFF
                 self.buffer[index + i] = byte
 
-    def apply(self, addr: int, size: int, cmd: SimpleBusCmd, wmask: int, wdata: int, burst_count: int = 4) -> DeviceRtn:
+    def apply(self, addr: int, size: int, cmd: SimpleBusCmd, wmask: int, wdata: int) -> DeviceRtn:
         size = size_to_bytes(size)
 
         match cmd:
@@ -163,24 +159,11 @@ class MemDevice:
                 self.write_data(addr, size, wdata, wmask)
                 return DeviceRtn(True, 0, SimpleBusCmd.WRITE_RESP)
             case SimpleBusCmd.READ_BURST:
-                self.burst_addr = addr
-                self.burst_size = size
-                self.burst_cmd = cmd
-                self.burst_count = burst_count
-                self.burst_index = 0
-                return DeviceRtn(True, 0, SimpleBusCmd.READ)
+                return DeviceRtn(False, 0, SimpleBusCmd.READ_BURST)
             case SimpleBusCmd.WRITE_BURST:
-                self.burst_addr = addr
-                self.burst_size = size
-                self.burst_cmd = cmd
-                self.burst_count = burst_count
-                self.burst_index = 0
-                self.write_data(addr, size, wdata, wmask)
-                return DeviceRtn(False, 0, SimpleBusCmd.WRITE)
+                return DeviceRtn(False, 0, SimpleBusCmd.WRITE_BURST)
             case SimpleBusCmd.WRITE_LAST:
                 self.write_data(addr, size, wdata, wmask)
-                self.burst_addr = 0
-                self.burst_cmd = 0
                 return DeviceRtn(True, 0, SimpleBusCmd.WRITE_RESP)
             case SimpleBusCmd.PROBE:
                 return DeviceRtn(True, 0, SimpleBusCmd.PROBE_HIT if self.validate_address_(addr, size) else SimpleBusCmd.PROBE_MISS)
@@ -188,30 +171,6 @@ class MemDevice:
                 return DeviceRtn(True, 0, SimpleBusCmd.READ_LAST)
             case _:
                 return DeviceRtn(False, 0, SimpleBusCmd.PROBE_MISS)
-
-    def burst_next(self) -> DeviceRtn:
-        resp_valid = False
-        resp_cmd = SimpleBusCmd.PROBE_MISS
-        rdata = 0
-        match self.burst_cmd:
-            case SimpleBusCmd.READ_BURST:
-                self.burst_index += 1
-                if self.burst_index < self.burst_count:
-                    next_addr = self.burst_addr + self.burst_index * self.burst_size
-                    rdata = self.read_data(next_addr, self.burst_size)
-                    resp_valid = True
-                    resp_cmd = SimpleBusCmd.READ
-                else:
-                    self.burst_cmd = 0
-            case SimpleBusCmd.WRITE_BURST:
-                self.burst_index += 1
-                if self.burst_index >= self.burst_count:
-                    self.burst_cmd = 0
-                else:
-                    resp_cmd = SimpleBusCmd.WRITE
-            case _:
-                pass
-        return DeviceRtn(resp_valid, rdata, resp_cmd)
 
 """   ---   """
 
@@ -278,71 +237,6 @@ def test_memo_device_apply_write(mem):
         result = mem.read_data(addr, expected_bytes)
         expected_value = wdata & ((1 << (8 * expected_bytes)) - 1)
         assert result == expected_value
-
-def test_memo_device_apply_burst_read(mem):
-    test_cases = [
-        (0x200, 0, 4),
-        (0x210, 1, 3),
-        (0x220, 2, 2),
-    ]
-
-    for addr, size_param, burst_count in test_cases:
-        expected_bytes = size_to_bytes(size_param)
-
-        response = mem.apply(addr, size_param, SimpleBusCmd.READ_BURST, 0, 0, burst_count)
-
-        assert response.valid == True
-        assert response.cmd == SimpleBusCmd.READ
-        assert response.rdata == 0
-
-        assert mem.burst_addr == addr
-        assert mem.burst_size == expected_bytes
-        assert mem.burst_cmd == SimpleBusCmd.READ_BURST
-        assert mem.burst_count == burst_count
-        assert mem.burst_index == 0
-
-def test_memo_device_apply_burst_write(mem):
-    test_cases = [
-        (0x300, 0, 0x55, 0b1, 3, 1),
-        (0x310, 1, 0xAABB, 0b11, 2, 2),
-        (0x320, 2, 0x11223344, 0b1111, 4, 4),
-    ]
-
-    for addr, size_param, wdata, wmask, burst_count, expected_bytes in test_cases:
-        response = mem.apply(addr, size_param, SimpleBusCmd.WRITE_BURST, wmask, wdata, burst_count)
-
-        assert response.valid == False
-        assert response.cmd == SimpleBusCmd.WRITE
-
-        assert mem.burst_addr == addr
-        assert mem.burst_size == expected_bytes
-        assert mem.burst_cmd == SimpleBusCmd.WRITE_BURST
-        assert mem.burst_count == burst_count
-        assert mem.burst_index == 0
-
-        result = mem.read_data(addr, expected_bytes)
-        expected_value = wdata & ((1 << (8 * expected_bytes)) - 1)
-        assert result == expected_value
-
-def test_memo_device_apply_burst_write_last(mem):
-    test_cases = [
-        (0x400, 0, 0x66, 0b1, 1),
-        (0x410, 1, 0xCCDD, 0b11, 2),
-        (0x420, 2, 0x55667788, 0b1111, 4),
-    ]
-
-    for addr, size_param, wdata, wmask, expected_bytes in test_cases:
-        response = mem.apply(addr, size_param, SimpleBusCmd.WRITE_LAST, wmask, wdata)
-
-        assert response.valid == True
-        assert response.cmd == SimpleBusCmd.WRITE_RESP
-
-        result = mem.read_data(addr, expected_bytes)
-        expected_value = wdata & ((1 << (8 * expected_bytes)) - 1)
-        assert result == expected_value
-
-        assert mem.burst_addr == 0
-        assert mem.burst_cmd == 0
 
 def test_memo_device_apply_probe(mem):
     test_cases = [
