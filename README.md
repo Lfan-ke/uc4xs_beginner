@@ -6,8 +6,7 @@
 >
 > - task1-picker
 > - task2-toffee
-> - task3-syfifo
-> - task4-ncache
+> - task3-ncache
 
 <br />
 
