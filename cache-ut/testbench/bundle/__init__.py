@@ -1,5 +1,5 @@
-from toffee import Bundle, Signals
-
+from toffee import Bundle, Signal, Signals
+from testbench.device import SimpleBusCmd
 
 class CacheRtn:
     def __init__(self, valid: bool, rdata: int, cmd: int, user: int):
@@ -8,12 +8,8 @@ class CacheRtn:
         self.valid = valid
         self.user = user
 
-    def apply(self, bundle):
-        bundle.bits.cmd = self.cmd
-        bundle.bits.rdata = self.rdata
-        bundle.valid = self.valid
-        bundle.bits.user = self.user
-        return bundle
+    def __str__(self):
+        return f"CacheRtn: valid: {self.valid}, rdata: 0x{self.rdata:08X}, cmd: {SimpleBusCmd(self.cmd).name}, user: {self.user}"
 
 class HandShakeBundle(Bundle):
     ready, valid = Signals(2)
@@ -46,11 +42,21 @@ class HandShakeBundle(Bundle):
             clock_step += 1
             await self.step(1)
 
+    def curr_is_ready(self) -> bool:
+        return self.ready.value == 1
+
+    def curr_is_valid(self) -> bool:
+        return self.valid.value == 1
+
+    def curr_is_handshake(self) -> bool:
+        return self.ready.value == 1 and self.valid.value == 1
+
 class BaseBundle(Bundle):
     clock, reset = Signals(2)
 
     class IO(Bundle):
-        empty, flush = Signals(2)
+        #, flush
+        empty = Signal()
 
     io = IO.from_prefix("io_")
 
@@ -62,9 +68,6 @@ class BaseBundle(Bundle):
 
     async def is_empty(self):
         return self.io.empty.value == 1
-
-    async def is_flush(self):
-        return self.io.flush.value == 1
 
 class SRAMReqRtn:
     def __init__(self, addr: int, size: int, cmd: int, wmask: int, wdata: int):
@@ -80,17 +83,26 @@ class SRAMReqBundle(HandShakeBundle):
 
     bits = BitsSRAMReq.from_prefix("bits_")
 
-    async def recv_req(self) -> SRAMReqRtn:
+    async def recv_req_block(self) -> SRAMReqRtn:
+        self.ready.value = 1
+        await self.step(1)
         await self.wait_valid()
         addr = self.bits.addr.value
         size = self.bits.size.value
         cmd = SimpleBusCmd(self.bits.cmd.value)
         wmask = self.bits.wmask.value
         wdata = self.bits.wdata.value
-        self.ready.value = 1
         await self.step()
         self.ready.value = 0
         await self.step()
+        return SRAMReqRtn(addr, size, cmd, wmask, wdata)
+
+    def recv_req(self) -> SRAMReqRtn:
+        addr = self.bits.addr.value
+        size = self.bits.size.value
+        cmd = SimpleBusCmd(self.bits.cmd.value)
+        wmask = self.bits.wmask.value
+        wdata = self.bits.wdata.value
         return SRAMReqRtn(addr, size, cmd, wmask, wdata)
 
 class SRAMRespBundle(HandShakeBundle):
@@ -99,7 +111,7 @@ class SRAMRespBundle(HandShakeBundle):
 
     bits = BitsSRAMResp.from_prefix("bits_")
 
-    async def send_resp(self, cmd, rdata):
+    async def send_resp_block(self, cmd, rdata):
         await self.wait_ready()
         self.valid.value = 1
         self.bits.cmd.value = cmd
@@ -107,6 +119,11 @@ class SRAMRespBundle(HandShakeBundle):
         await self.step()
         self.valid.value = 0
         await self.step()
+
+    async def send_resp(self, cmd, rdata):
+        self.valid.value = 1
+        self.bits.cmd.value = cmd
+        self.bits.rdata.value = rdata
 
 class RequestBundle(HandShakeBundle):
     class BitsRequest(Bundle):
@@ -123,7 +140,7 @@ class RequestBundle(HandShakeBundle):
         self.bits.wdata.value = wdata
         self.bits.user.value = user
         self.valid.value = 1
-        await self.step(1)
+        await self.step(2)
         self.valid.value = 0
         await self.step(1)
 
@@ -138,12 +155,12 @@ class ResponseBundle(HandShakeBundle):
     bits = BitsResponse.from_prefix("bits_")
 
     async def response_block(self) -> CacheRtn:
+        self.ready.value = 1
+        await self.step(1)
         await self.wait_valid()
         cmd = self.bits.cmd.value
         rdata = self.bits.rdata.value
         user = self.bits.user.value
-        self.ready.value = 1
-        await self.step(1)
         self.ready.value = 0
         await self.step(1)
         return CacheRtn(True, rdata, cmd, user)
@@ -202,17 +219,49 @@ class CacheBundle(Bundle):
     async def response_block(self) -> CacheRtn:
         return await self.resp.response_block()
 
-    async def send_mem_resp(self, cmd, rdata):
-        await self.mem_resp.send_resp(cmd, rdata)
+    def recv_resp(self) -> CacheRtn:
+        cmd = self.resp.bits.cmd.value
+        rdata = self.resp.bits.rdata.value
+        user = self.resp.bits.user.value
+        valid = self.resp.valid.value == 1
+        return CacheRtn(valid, rdata, cmd, user)
 
-    async def recv_mem_req(self) -> SRAMReqRtn:
-        return await self.mem_req.recv_req()
+    async def send_mem_resp_block(self, cmd, rdata):
+        await self.mem_resp.send_resp_block(cmd, rdata)
 
-    async def send_mmio_resp(self, cmd, rdata):
-        await self.mmio_resp.send_resp(cmd, rdata)
+    async def recv_mem_req_block(self) -> SRAMReqRtn:
+        return await self.mem_req.recv_req_block()
 
-    async def recv_mmio_req(self) -> SRAMReqRtn:
-        return await self.mmio_req.recv_req()
+    async def send_mmio_resp_block(self, cmd, rdata):
+        await self.mmio_resp.send_resp_block(cmd, rdata)
 
-    def hook(self, dut):
+    async def recv_mmio_req_block(self) -> SRAMReqRtn:
+        return await self.mmio_req.recv_req_block()
+
+    def send_mem_resp(self, cmd, rdata):
+        self.mem_resp.send_resp(cmd, rdata)
+
+    def recv_mem_req(self) -> SRAMReqRtn:
+        return self.mem_req.recv_req()
+
+    def send_mmio_resp(self, cmd, rdata):
+        self.mmio_resp.send_resp(cmd, rdata)
+
+    def recv_mmio_req(self) -> SRAMReqRtn:
+        return self.mmio_req.recv_req()
+
+    def hook(self, dut, funcs: list):
         self.dut = dut
+        for i in funcs:
+            self.dut.StepRis(i)
+
+    def get_queue(self):
+        if getattr(self, "resp_queue", None) is None:
+            self.resp_queue = []
+        return self.resp_queue
+
+    def clean_resp_queue(self):
+        self.resp_queue.clear()
+
+    async def wait_empty(self):
+        raise NotImplementedError

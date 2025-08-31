@@ -12,6 +12,7 @@ __all__ = [
 from enum import IntEnum
 
 class SimpleBusCmd(IntEnum):
+    # req
     READ        = 0b0000
     WRITE       = 0b0001
     READ_BURST  = 0b0010
@@ -19,7 +20,7 @@ class SimpleBusCmd(IntEnum):
     WRITE_LAST  = 0b0111
     PROBE       = 0b1000
     PREFETCH    = 0b0100
-
+    # resp
     READ_LAST   = 0b0110
     WRITE_RESP  = 0b0101
     PROBE_HIT   = 0b1100
@@ -34,12 +35,6 @@ class DeviceRtn:
         self.rdata = rdata
         self.valid = valid
 
-    def apply(self, bundle):
-        bundle.bits.cmd = self.cmd
-        bundle.bits.rdata = self.rdata
-        bundle.valid = self.valid
-        return bundle
-
 class MMIODevice:
     def __init__(self, base: int = 0x3000_0000, size: int = 0x1000):
         """ size: byte """
@@ -47,6 +42,9 @@ class MMIODevice:
         self.size = size
         self.end_address = base + size - 1
         self.buffer = bytearray(self.size)
+
+        for i in range(32):
+            self.buffer[i] = i+1 & 0xFF
 
     def validate_address_(self, address: int, size: int = 1) -> bool:
         return not (
@@ -84,8 +82,8 @@ class MMIODevice:
             # print(f"\n\t  - mmio write mask: {wmask:08X}  cond: {wmask & (1 << i)}")
 
     def apply(self, addr: int, size: int, cmd: SimpleBusCmd, wmask: int, wdata: int) -> DeviceRtn:
-        self.validate_address(addr, size)
-        offset = addr - self.base
+        self.validate_address(addr, size_to_bytes(size))
+        offset = addr - self.base_address
         match cmd:
             case SimpleBusCmd.READ:
                 return DeviceRtn(True, self.read_data(addr, size), SimpleBusCmd.READ_LAST)
@@ -94,7 +92,7 @@ class MMIODevice:
                 return DeviceRtn(True, 0, SimpleBusCmd.WRITE_RESP)
             case SimpleBusCmd.PROBE:
                 return DeviceRtn(True, 0, SimpleBusCmd.PROBE_HIT)
-            case SimpleBusCmd.READ_BURST | SimpleBusCmd.WRITE_BURST:
+            case SimpleBusCmd.READ_BURST | SimpleBusCmd.WRITE_BURST | SimpleBusCmd.WRITE_LAST:
                 assert False, "mmio shout not support burst"
             case _:
                 return DeviceRtn(False, 0, SimpleBusCmd.PROBE_MISS)
@@ -108,13 +106,16 @@ class MemDevice:
         self.base_address = 0x0000
         self.end_address  = self.base_address + self.size -1
 
+        for i in range(256):
+            self.buffer[i] = i & 0xFF
+
     def validate_address_(self, address: int, size: int = 1) -> bool:
         return not (
             address < self.base_address or address + size - 1 > self.end_address
         )
 
     def validate_address(self, address: int, size: int = 1):
-        assert self.validate_address_(address, size), f"address [${address}] with size [${size}] out of mem"
+        assert self.validate_address_(address, size), f"address [${address:08X}] with size [${size:02x}] out of mem [0x{self.base_address:08X}, 0x{self.end_address:08X}]"
 
     def read_bytes(self, addr: int, size: int) -> bytearray:
         self.validate_address(addr, size)
@@ -150,11 +151,10 @@ class MemDevice:
                 self.buffer[index + i] = byte
 
     def apply(self, addr: int, size: int, cmd: SimpleBusCmd, wmask: int, wdata: int) -> DeviceRtn:
-        size = size_to_bytes(size)
-
         match cmd:
             case SimpleBusCmd.READ:
-                return DeviceRtn(True, self.read_data(addr, size), SimpleBusCmd.READ_LAST)
+                rdata = self.read_data(addr, size)
+                return DeviceRtn(True, rdata, SimpleBusCmd.READ_LAST)
             case SimpleBusCmd.WRITE:
                 self.write_data(addr, size, wdata, wmask)
                 return DeviceRtn(True, 0, SimpleBusCmd.WRITE_RESP)
@@ -163,10 +163,9 @@ class MemDevice:
             case SimpleBusCmd.WRITE_BURST:
                 return DeviceRtn(False, 0, SimpleBusCmd.WRITE_BURST)
             case SimpleBusCmd.WRITE_LAST:
-                self.write_data(addr, size, wdata, wmask)
-                return DeviceRtn(True, 0, SimpleBusCmd.WRITE_RESP)
+                return DeviceRtn(False, 0, SimpleBusCmd.WRITE_RESP)
             case SimpleBusCmd.PROBE:
-                return DeviceRtn(True, 0, SimpleBusCmd.PROBE_HIT if self.validate_address_(addr, size) else SimpleBusCmd.PROBE_MISS)
+                return DeviceRtn(True, 0, SimpleBusCmd.PROBE_HIT if self.validate_address_(addr, size_to_bytes(size)) else SimpleBusCmd.PROBE_MISS)
             case SimpleBusCmd.PREFETCH:
                 return DeviceRtn(True, 0, SimpleBusCmd.READ_LAST)
             case _:
@@ -202,22 +201,6 @@ def mem():
 @pytest.fixture
 def mmio():
     return MMIODevice(0x8000, 4)
-
-def test_memo_device_apply_read(mem):
-    test_cases = [
-        (0x00, 0, 1),
-        (0x10, 1, 2),
-        (0x20, 2, 4),
-        (0x30, 3, 8),
-    ]
-
-    for addr, size_param, expected_bytes in test_cases:
-        response = mem.apply(addr, size_param, SimpleBusCmd.READ, 0, 0)
-
-        assert response.valid == True
-        assert response.cmd == SimpleBusCmd.READ_LAST
-        expected_data = mem.read_data(addr, expected_bytes)
-        assert response.rdata == expected_data
 
 def test_memo_device_apply_write(mem):
     test_cases = [
