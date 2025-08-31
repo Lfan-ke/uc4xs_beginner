@@ -1,4 +1,4 @@
-PYTEST_OPTS := -s -v --toffee-report --report-name cache_ut_report.html # -n auto
+PYTEST_OPTS := -s -v --toffee-report --report-name cache_ut_report.html -n auto
 MILL_CMD := mill --no-server -d
 VERILATOR_OPTS := --trace
 PICKER_CMD := picker export

@@ -72,7 +72,6 @@ async def bundle(dut: DUTCache, mmio: 'MMIODevice', mem: 'MemDevice', debug=Fals
                     if debug: print(f"mmio resp: 0x{resp.rdata:08X}, {SimpleBusCmd(resp.cmd).name}, {resp.valid}")
 
     def mem_func(cycle):
-        # debug = True
         curr_len = len(state_dict["mem"]["queue"])
         if bundle.mem_req.curr_is_valid():
             if bundle.mem_req.curr_is_ready():

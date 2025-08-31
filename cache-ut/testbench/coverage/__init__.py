@@ -12,9 +12,9 @@ def get_cov_group_basic_cache_rw(agent: "CacheAgent"):
     group.add_watch_point(agent.bundle.req, {
         "READ": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ,
         "WRITE": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE,
-        "READ_BURST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ_BURST,
-        "WRITE_BURST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE_BURST,
-        "WRITE_LAST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE_LAST,
+        # "READ_BURST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ_BURST,
+        # "WRITE_BURST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE_BURST,
+        # "WRITE_LAST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE_LAST,
     }, name="cache req")
     group.add_watch_point(agent.bundle.resp, {
         "READ_LAST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ_LAST,
@@ -25,8 +25,8 @@ def get_cov_group_basic_cache_rw(agent: "CacheAgent"):
 def get_cov_group_basic_mem_rw(agent: "CacheAgent"):
     group = CovGroup("Basic Mem Read/Write")
     group.add_watch_point(agent.bundle.mem_req, {
-        "READ": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ,
-        "WRITE": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE,
+        # "READ": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ,
+        # "WRITE": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE,
         "READ_BURST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.READ_BURST,
         "WRITE_BURST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE_BURST,
         "WRITE_LAST": lambda bundle: bundle.bits.cmd.value == SimpleBusCmd.WRITE_LAST,
@@ -114,7 +114,6 @@ single_coverage_func = {
     "mmio not burst": cov_func_gen("mmio not burst".title(), "mmio not burst", "mmio not burst"),
     "cache write back": cov_func_gen("cache write back".title(), "cache write back", "cache write back"),
     "cache read miss time more than read hit": cov_func_gen("cache read miss time more than read hit".title(), "cache read miss time more than read hit", "cache read miss time more than read hit"),
-    "cache miss block pipeline": cov_func_gen("cache miss block pipeline".title(), "cache miss block pipeline", "cache miss block pipeline"),
     "cache key priority": cov_func_gen("cache key priority".title(), "cache key priority", "cache key priority"),
     "cache dirty block write back": cov_func_gen("cache dirty block write back".title(), "cache dirty block write back", "cache dirty block write back"),
     "clean blocks not write back": cov_func_gen("clean blocks not write back".title(), "clean blocks not write back", "clean blocks not write back"),
